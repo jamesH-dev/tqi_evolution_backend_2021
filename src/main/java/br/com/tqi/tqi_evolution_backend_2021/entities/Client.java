@@ -1,13 +1,9 @@
 package br.com.tqi.tqi_evolution_backend_2021.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -34,8 +30,6 @@ public class Client {
     private String cpf;
     @Column (name="client_rg")
     private String rg;
-    @Column (name = "client_birth_date")
-    private Date birthDate;
     @Column (name = "client_full_address")
     private String fullAddress;
     @Column (name = "client_password")
@@ -49,11 +43,11 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(id, client.id) && Objects.equals(email, client.email) && Objects.equals(fullName, client.fullName) && Objects.equals(income, client.income) && Objects.equals(cpf, client.cpf) && Objects.equals(rg, client.rg) && Objects.equals(birthDate, client.birthDate) && Objects.equals(fullAddress, client.fullAddress) && Objects.equals(password, client.password) && Objects.equals(loans, client.loans);
+        return Objects.equals(id, client.id) && Objects.equals(email, client.email) && Objects.equals(fullName, client.fullName) && Objects.equals(income, client.income) && Objects.equals(cpf, client.cpf) && Objects.equals(rg, client.rg) && Objects.equals(fullAddress, client.fullAddress) && Objects.equals(password, client.password) && Objects.equals(loans, client.loans);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, fullName, income, cpf, rg, birthDate, fullAddress, password);
+        return Objects.hash(id, email, fullName, income, cpf, rg, fullAddress, password);
     }
 }

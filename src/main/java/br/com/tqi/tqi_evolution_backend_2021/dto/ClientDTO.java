@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +19,6 @@ public class ClientDTO {
     private String email;
     private String cpf;
     private String rg;
-    private Date birthDate;
     private String fullAddress;
     private List <LoanDTO> loans;
 
@@ -31,7 +29,6 @@ public class ClientDTO {
         email = client.getEmail();
         cpf = client.getCpf();
         rg = client.getRg();
-        birthDate = client.getBirthDate();
         fullAddress = client.getFullAddress();
         loans = client.getLoans().stream().map(LoanDTO::new).collect(Collectors.toList());
     }
