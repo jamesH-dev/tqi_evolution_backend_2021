@@ -6,9 +6,12 @@ import br.com.tqi.tqi_evolution_backend_2021.entities.Client;
 import br.com.tqi.tqi_evolution_backend_2021.exceptions.AlreadyExistsException;
 import br.com.tqi.tqi_evolution_backend_2021.exceptions.ClientNotFoundException;
 import br.com.tqi.tqi_evolution_backend_2021.repositories.ClientRepository;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Optional;
 
 
@@ -38,6 +41,16 @@ public class ClientService {
 
     public Client findClientByEmail (String email){
         return clientRepository.findByEmail(email);
+    }
+
+    public ClientDTO findAuthenticatedClient (String token){
+        String[] chunks = token.split("\\.");
+        Base64.Decoder decoder = Base64.getUrlDecoder();
+        String payload = new String(decoder.decode(chunks[1]));
+        Object obj = JSONValue.parse(payload);
+        JSONObject jsonObjectDecode = (JSONObject)obj;
+        String email = (String)jsonObjectDecode.get("sub");
+        return new ClientDTO(clientRepository.findByEmail(email));
     }
 
     public Client save(Client client){

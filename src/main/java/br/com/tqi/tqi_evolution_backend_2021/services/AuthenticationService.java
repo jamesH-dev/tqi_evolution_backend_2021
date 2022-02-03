@@ -11,9 +11,9 @@ import static java.util.Collections.emptyList;
 import java.util.Date;
 
 public class AuthenticationService {
-    static final long EXPIRATION_TIME = 864_000_00;
-    static final String SIGNING_KEY = "RedPill";
-    static final String PREFIX = "Bearer";
+    static final long EXPIRATION_TIME = 600_000;
+    public static final String SIGNING_KEY = "RedPill";
+    public static final String PREFIX = "Bearer";
 
     static public void addToken(HttpServletResponse response, String email){
         String JwToken = Jwts.builder().setSubject(email)
